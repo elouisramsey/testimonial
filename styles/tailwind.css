@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+
+ul,
+li,
+a {
+  font-family: 'Roboto', serif;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+label,
+div,
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: 'Inter', sans-serif;
+}
+
+button {
+  font: inherit;
+}
+
+body {
+  background-color: #ffffff;
+  height: 100vh;
+  overflow-x: hidden;
+  font-family: 'Inter', sans-serif;
+}
+
+.heroBg {
+  border-radius: 50%;
+  height: 16rem;
+  width: 16rem;
+  position: absolute;
+}
+
+.btn {
+  box-shadow: 1px 4px 8px rgba(239, 88, 3, 0.2);
+}
+
+input[type='radio']:checked {
+  background-color: #ff5c00;
+}
+
+@media only screen and (min-width: 1024px) {
+  .heroBg {
+    height: 34rem;
+    width: 34rem;
+  }
+}
+
+@tailwind utilities;
