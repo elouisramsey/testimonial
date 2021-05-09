@@ -5,6 +5,13 @@ import Success from './Success'
 const Form = (props) => {
   const hiddenFileInput = React.useRef(null)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [state, setState] = useState({
+    firstName: '',
+    story: '',
+    tag: '',
+    lastName: '',
+    city: ''
+  })
 
   let image = null
 
@@ -18,10 +25,24 @@ const Form = (props) => {
     image = fileUploaded
   }
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target
+    setState({ ...state, [name]: value })
+  }
+
   const handleSubmit = (e) => {
-    const data = new FormData()
-    data.append('image', image)
     e.preventDefault()
+    const data = new FormData()
+    const userData = {
+      firstName: state.firstName,
+      story: state.story,
+      tag: state.tag,
+      lastName: state.lastName,
+      city: state.city
+    }
+    data.append('image', image)
+    data.append('userData', userData)
+
     setIsSubmitted(true)
   }
 
@@ -56,6 +77,7 @@ const Form = (props) => {
               onChange={handleChange}
               type='file'
               name='image'
+              required
               style={{ display: 'none' }}
               className='block w-full md:text-sm text-tiny h-full bg-red focus:outline-none px-2 focus:ring-transparent '
             />
@@ -74,6 +96,9 @@ const Form = (props) => {
                   id='firstName'
                   autoComplete='off'
                   type='text'
+                  value={state.firstName}
+                  required
+                  onChange={handleInputChange}
                   name='firstName'
                   className='block w-full md:text-sm text-tiny bg-red focus:outline-none px-2 focus:ring-transparent text-black'
                 />
@@ -88,7 +113,10 @@ const Form = (props) => {
               </label>
               <div className='flex p-2 text-sm justify-betwen border items-center rounded-md text-black border-solid'>
                 <input
+                  required
                   id='lastName'
+                  onChange={handleInputChange}
+                  value={state.lastName}
                   autoComplete='off'
                   type='text'
                   name='lastName'
@@ -107,6 +135,9 @@ const Form = (props) => {
             <div className='flex p-2 text-sm justify-betwen border items-center rounded-md text-black border-solid'>
               <textarea
                 name='story'
+                required
+                onChange={handleInputChange}
+                value={state.story}
                 id='story'
                 className='block w-full focus:ring-black md:text-sm text-tiny px-2 h-40 focus:outline-none resize-none text-tiny focus:ring-transparent text-black'
               />
@@ -121,7 +152,8 @@ const Form = (props) => {
                 type='radio'
                 id='customer'
                 name='tag'
-                value='customer'
+                onChange={handleInputChange}
+                value={state.tag}
                 className='bg-btn'
               />
               <label
@@ -134,7 +166,8 @@ const Form = (props) => {
                 type='radio'
                 id='vendor'
                 name='tag'
-                value='vendor'
+                onChange={handleInputChange}
+                value={state.tag}
                 className='bg-btn'
               />
               <label
@@ -156,6 +189,8 @@ const Form = (props) => {
               {' '}
               <input
                 id='city'
+                onChange={handleInputChange}
+                value={state.city}
                 autoComplete='off'
                 type='text'
                 name='city'
