@@ -6,6 +6,8 @@ const Form = (props) => {
   const hiddenFileInput = React.useRef(null)
   const [isSubmitted, setIsSubmitted] = useState(false)
 
+  let image = null
+
   const handleClick = (event) => {
     event.preventDefault()
     hiddenFileInput.current.click()
@@ -13,10 +15,12 @@ const Form = (props) => {
 
   const handleChange = (event) => {
     const fileUploaded = event.target.files[0]
-    props.handleFile(fileUploaded)
+    image = fileUploaded
   }
 
   const handleSubmit = (e) => {
+    const data = new FormData()
+    data.append('image', image)
     e.preventDefault()
     setIsSubmitted(true)
   }

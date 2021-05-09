@@ -27,7 +27,7 @@ const Footer = () => {
 
   return (
     <footer className='bg-footerBg px-8 md:px-16 lg:px-28'>
-      <section className='flex flex-col-reverse lg:flex-col lg:flex-row items-center justify-between'>
+      <section className='flex flex-col-reverse lg:flex-row items-center justify-between'>
         <div className='lg:-mt-16'>
           <Image
             src='https://res.cloudinary.com/walking-voice-limited/image/upload/c_scale,f_auto,q_auto,w_437/v1620475233/vasiti/subscribe-banner_1_sr33gd.png'
